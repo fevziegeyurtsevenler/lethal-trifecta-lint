@@ -1,0 +1,7 @@
+{
+  "tools": [
+    {"name": "read_file", "description": "Read a file from the local workspace", "inputSchema": {"properties": {"path": {"type": "string"}}}},
+    {"name": "fetch_url", "description": "Fetch and read the contents of a web page", "inputSchema": {"properties": {"url": {"type": "string"}}}},
+    {"name": "send_email", "description": "Send an email to a recipient", "inputSchema": {"properties": {"to": {"type": "string"}, "body": {"type": "string"}}}}
+  ]
+}

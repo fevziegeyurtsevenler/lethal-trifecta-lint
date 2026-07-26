@@ -1,0 +1,3 @@
+[
+  {"name": "email_assistant", "description": "Read the user's inbox (private mail, untrusted senders) and send replies", "args_schema": {"properties": {"query": {"type": "string"}}}}
+]

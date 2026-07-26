@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this tool, please cite it as below."
+title: "lethal-trifecta-lint: Linting AI Agent Tool Manifests for the Lethal Trifecta"
+authors:
+  - family-names: Yurtsevenler
+    given-names: Fevzi Ege
+    affiliation: AltaySec
+year: 2026
+url: "https://github.com/fevziegeyurtsevenler/lethal-trifecta-lint"
+license: Apache-2.0
+references:
+  - type: article
+    authors: [{family-names: Willison, given-names: Simon}]
+    title: "The lethal trifecta for AI agents"
+    year: 2025
+keywords: [ai-security, llm-security, agent-security, lethal-trifecta, prompt-injection, mcp]

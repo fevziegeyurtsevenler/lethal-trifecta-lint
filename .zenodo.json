@@ -1,0 +1,7 @@
+{
+  "title": "lethal-trifecta-lint: Linting AI Agent Tool Manifests for the Lethal Trifecta",
+  "description": "A zero-dependency linter that reads an AI agent's tool manifest (MCP tools/list, OpenAI/Anthropic tools, LangChain export, or a name list), classifies each tool by the three lethal-trifecta capabilities (private-data access, untrusted-content intake, external communication), and fails CI when all three co-occur. Concept: Simon Willison.",
+  "upload_type": "software", "access_right": "open", "license": "Apache-2.0",
+  "creators": [{"name": "Yurtsevenler, Fevzi Ege", "affiliation": "AltaySec"}],
+  "keywords": ["ai-security","llm-security","agent-security","lethal-trifecta","prompt-injection","mcp","supply-chain-security"]
+}

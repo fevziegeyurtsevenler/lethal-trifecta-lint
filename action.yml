@@ -1,0 +1,19 @@
+name: "lethal-trifecta-lint"
+description: "Fail the build if an AI agent's tool manifest forms the lethal trifecta (private-data + untrusted-input + external-comm)."
+inputs:
+  manifest:
+    description: "Path to the agent tool manifest (MCP tools/list, OpenAI tools, LangChain export, or name list)."
+    required: true
+  warn-exit:
+    description: "Also fail on a two-of-three warning."
+    required: false
+    default: "false"
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        FLAGS=""
+        [ "${{ inputs.warn-exit }}" = "true" ] && FLAGS="--warn-exit"
+        python -m ltlint.cli "${{ inputs.manifest }}" $FLAGS
+      working-directory: ${{ github.action_path }}

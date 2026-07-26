@@ -1,0 +1,4 @@
+[
+  {"type": "function", "function": {"name": "read_file", "description": "Read a workspace file", "parameters": {"properties": {"path": {"type": "string"}}}}},
+  {"type": "function", "function": {"name": "calculator", "description": "Evaluate an arithmetic expression", "parameters": {"properties": {"expr": {"type": "string"}}}}}
+]
