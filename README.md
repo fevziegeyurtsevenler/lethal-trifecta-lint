@@ -86,10 +86,19 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.11" }
+      - uses: fevziegeyurtsevenler/lethal-trifecta-lint@main
+        with:
+          manifest: agent_tools.json     # path in YOUR repo; add warn-exit: "true" to fail on 2-of-3
+```
+
+<details><summary>Or without the action (clone + run)</summary>
+
+```yaml
       - run: |
           git clone --depth 1 https://github.com/fevziegeyurtsevenler/lethal-trifecta-lint
-          python -m lethal-trifecta-lint.ltlint.cli agent_tools.json
+          PYTHONPATH=lethal-trifecta-lint python -m ltlint.cli agent_tools.json
 ```
+</details>
 
 ## ⚖️ Honesty & limits
 

@@ -50,8 +50,18 @@ _SEEDS = {
         "telegram", "sms", "twilio", "http_post", "post_url", "webhook", "publish",
         "upload", "put_object", "s3_put", "create_issue", "create_pr", "comment",
         "tweet", "post_tweet", "notify", "http_request", "request", "curl", "fetch_url",
-        "browse", "send", "share", "export", "forward",
+        "browse", "send", "share", "export", "forward", "reply", "replies", "send_reply",
     ],
+}
+
+# Low-signal single words. These are matched ONLY against the tool NAME, never a free-text
+# description — "…share and export a copy" in a description must not tag external_comm. A
+# capability is claimed when a STRONG (multi-word / specific) seed matches anywhere, OR any seed
+# matches the name. This kills the alarm-fatigue that plagues single-word keyword classifiers.
+_GENERIC = {
+    "get", "list", "query", "select", "token", "key", "env", "request", "send", "url",
+    "fetch", "export", "download", "share", "comment", "post", "put", "publish", "upload",
+    "notify", "incoming", "internal", "private", "attachment", "curl", "sql", "tweet", "reply",
 }
 
 # Tools that are inherently both: e.g. an email reader ingests untrusted content AND reads private mail.
@@ -84,13 +94,18 @@ class ToolClass:
 
 def classify_tool(name: str, description: str = "", params=None) -> ToolClass:
     params = params or []
+    lname = (name or "").lower()
     blob = " ".join([str(name or ""), str(description or ""), " ".join(str(p) for p in params)]).lower()
     tc = ToolClass(name=name or "<unnamed>")
     for cap, seeds in _SEEDS.items():
-        hits = _matches(blob, seeds)
+        strong = [s for s in seeds if s not in _GENERIC]
+        # STRONG (specific/multi-word) seed anywhere, OR ANY seed in the tool name
+        strong_hits = _matches(blob, strong)
+        name_hits = _matches(lname, seeds)
+        hits = sorted(set(strong_hits) | set(name_hits))
         if hits:
             tc.caps.add(cap)
-            tc.evidence[cap] = sorted(set(hits))[:6]
+            tc.evidence[cap] = hits[:6]
     # multi-capability shortcuts
     lname = (name or "").lower()
     for key, caps in _MULTI.items():

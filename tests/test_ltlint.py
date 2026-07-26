@@ -58,6 +58,19 @@ def test_warn_two_of_three():
     assert not rep.trifecta and rep.verdict == "warn"
 
 
+def test_benign_agents_not_flagged_danger():
+    # generic verbs in DESCRIPTIONS must not manufacture a trifecta (alarm-fatigue guard)
+    doc = [{"name": "lookup_docs", "description": "Search and fetch documentation from the internal wiki URL"},
+           {"name": "summarize", "description": "Summarize the selected text content"},
+           {"name": "save_draft", "description": "Post the draft to share with the team and export a copy"}]
+    assert analyze(doc).verdict != "danger"
+    weather = [{"name": "translate_text", "description": "Translate text"},
+               {"name": "save_note", "description": "Save a note"},
+               {"name": "export_pdf", "description": "Export the document to PDF"},
+               {"name": "get_weather", "description": "Get the current weather"}]
+    assert analyze(weather).verdict == "ok"
+
+
 def test_cli_exit_codes():
     assert main([os.path.join(EX, "trifecta_agent.json"), "--quiet"]) == 2
     assert main([os.path.join(EX, "safe_agent.json"), "--quiet"]) == 0

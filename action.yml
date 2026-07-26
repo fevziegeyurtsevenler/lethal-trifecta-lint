@@ -12,8 +12,11 @@ runs:
   using: "composite"
   steps:
     - shell: bash
+      # stay in the caller's workspace so a relative `manifest` path resolves against their repo;
+      # PYTHONPATH points Python at this action's checkout so `ltlint` imports.
+      env:
+        PYTHONPATH: ${{ github.action_path }}
       run: |
         FLAGS=""
         [ "${{ inputs.warn-exit }}" = "true" ] && FLAGS="--warn-exit"
         python -m ltlint.cli "${{ inputs.manifest }}" $FLAGS
-      working-directory: ${{ github.action_path }}
