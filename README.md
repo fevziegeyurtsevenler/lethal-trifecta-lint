@@ -130,3 +130,10 @@ jobs:
 ```
 
 Apache-2.0 · built by **[AltaySec](https://altaysec.com.tr)** — Türkçe-first AI/LLM security.
+
+---
+
+## İlgili AltaySec Kaynakları
+
+- 📖 [Lethal Trifecta (Ölümcül Üçlü) Nedir? Ajanlarda Veri Sızdırmanın Üç Koşulu](https://altaysec.com.tr/arastirmalar/lethal-trifecta-olumcul-uclu-ajan) — konunun derinlemesine Türkçe analizi
+- 🌐 [AltaySec Araştırmalar](https://altaysec.com.tr/arastirmalar/) — Türkçe yapay zekâ güvenliği yazıları
